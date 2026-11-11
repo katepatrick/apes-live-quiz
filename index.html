@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#12342b">
+<title>Join the quiz</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="p-wrap" id="app">
+
+  <!-- JOIN -->
+  <section id="s-join" class="p-join">
+    <h1 class="logo">APES <span>Live</span></h1>
+    <p>Enter the game code shown on the screen.</p>
+    <div class="card">
+      <div class="field"><label for="pin">Game code</label>
+        <input id="pin" class="pin-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="off" placeholder="123456"></div>
+      <div class="field"><label for="nick">Nickname</label>
+        <input id="nick" type="text" maxlength="18" autocomplete="off" placeholder="Your nickname"></div>
+      <button class="btn primary" id="joinBtn" style="width:100%">Join game</button>
+      <div class="err hidden" id="joinErr"></div>
+    </div>
+  </section>
+
+  <!-- everything after joining -->
+  <section id="s-game" class="hidden" style="display:flex;flex-direction:column;flex:1">
+    <div class="p-top"><div class="nm" id="meName"></div><div class="sc" id="meScore">0</div></div>
+
+    <div id="v-wait" class="p-msg hidden">
+      <div class="big">You're in!</div>
+      <div class="sub" id="waitSub">See your nickname on the big screen. Waiting for the teacher to start…</div>
+    </div>
+
+    <div id="v-q" class="hidden" style="display:flex;flex-direction:column;flex:1">
+      <div class="p-qmeta"><span id="qNum"></span><span id="qTime"></span></div>
+      <div class="timer" id="qTimer"><i></i></div>
+      <div class="p-q" id="qText"></div>
+      <div class="tiles p-tiles" id="qTiles"></div>
+    </div>
+
+    <div id="v-locked" class="p-msg hidden">
+      <div class="big">Answer locked in</div>
+      <div class="sub">Waiting for everyone else…</div>
+      <div class="tiles p-tiles" id="lockedTile" style="margin-top:22px;width:100%"></div>
+    </div>
+
+    <div id="v-res" class="p-res hidden">
+      <div class="badge" id="resBadge"></div>
+      <div class="pts" id="resPts"></div>
+      <div class="stat" id="resStat"></div>
+      <div class="explain" id="resExplain"></div>
+    </div>
+
+    <div id="v-final" class="p-res hidden">
+      <div class="badge good" id="finBadge"></div>
+      <div class="pts" id="finScore"></div>
+      <div class="stat" id="finStat"></div>
+      <div class="podium-mini" id="finPodium"></div>
+    </div>
+
+    <div id="v-msg" class="p-msg hidden"><div class="big" id="msgBig"></div><div class="sub" id="msgSub"></div>
+      <button class="btn accent hidden" id="msgBtn" style="margin-top:18px">Back</button></div>
+  </section>
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const SHAPES = [
+    '<svg viewBox="0 0 32 32"><path d="M16 3 30 28H2z"/></svg>',
+    '<svg viewBox="0 0 32 32"><path d="M16 2 30 16 16 30 2 16z"/></svg>',
+    '<svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="13"/></svg>',
+    '<svg viewBox="0 0 32 32"><rect x="4" y="4" width="24" height="24" rx="2"/></svg>'
+  ];
+  const views = ['v-wait','v-q','v-locked','v-res','v-final','v-msg'];
+  function show(id){ views.forEach(v => $(v).classList.toggle('hidden', v !== id)); if(id==='v-q'||id==='v-locked') {} }
+  function esc(el, t){ el.textContent = t; return el; }
+
+  let ws = null, pin = '', name = '', token = '', joined = false, closedByUs = false;
+  let qIndex = -1, qEnd = 0, qTotalMs = 0, raf = 0, answered = false, retry = 0;
+
+  const params = new URLSearchParams(location.search);
+  if (params.get('pin')) $('pin').value = params.get('pin').replace(/\D/g,'').slice(0,6);
+  try {
+    const last = JSON.parse(localStorage.getItem('apesLive') || 'null');
+    if (last && last.pin) {
+      if (!$('pin').value || $('pin').value === last.pin) { $('pin').value = last.pin; $('nick').value = last.name || ''; }
+    }
+  } catch {}
+
+  function connect(onOpen){
+    ws = new WebSocket((location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host);
+    ws.onopen = () => { retry = 0; onOpen && onOpen(); };
+    ws.onmessage = e => { let m; try { m = JSON.parse(e.data); } catch { return; } onMsg(m); };
+    ws.onclose = () => {
+      if (closedByUs) return;
+      if (joined) {
+        retry++;
+        $('waitSub').textContent = 'Reconnecting…';
+        setTimeout(() => connect(() => send({ t:'p:join', pin, name, token })), Math.min(4000, 500 * retry));
+      }
+    };
+  }
+  function send(o){ if (ws && ws.readyState === 1) ws.send(JSON.stringify(o)); }
+
+  function join(){
+    pin = $('pin').value.replace(/\D/g,'');
+    name = $('nick').value.trim();
+    let saved = null; try { saved = JSON.parse(localStorage.getItem('apesLive') || 'null'); } catch {}
+    token = (saved && saved.pin === pin && saved.name === name) ? saved.token : '';
+    if (pin.length !== 6) return joinErr('Enter the 6-digit game code.');
+    if (!name) return joinErr('Choose a nickname.');
+    $('joinBtn').disabled = true; $('joinErr').classList.add('hidden');
+    closedByUs = true; try { ws && ws.close(); } catch {} closedByUs = false;
+    connect(() => send({ t:'p:join', pin, name, token }));
+  }
+  function joinErr(t){ const e = $('joinErr'); e.textContent = t; e.classList.remove('hidden'); $('joinBtn').disabled = false; }
+  $('joinBtn').onclick = join;
+  $('nick').addEventListener('keydown', e => { if (e.key === 'Enter') join(); });
+  $('pin').addEventListener('keydown', e => { if (e.key === 'Enter') $('nick').focus(); });
+
+  function enterGame(){
+    $('s-join').classList.add('hidden'); $('s-game').classList.remove('hidden');
+    esc($('meName'), name);
+  }
+
+  function onMsg(m){
+    switch (m.t) {
+      case 'error':
+        if (!joined) { joinErr(m.msg); try { closedByUs = true; ws.close(); } catch {} closedByUs = false; }
+        else if (m.code === 'pin') { joined = false; msg('Game not found', 'The teacher may have ended it.', true); }
+        return;
+      case 'joined':
+        joined = true; token = m.token; name = m.name;
+        try { localStorage.setItem('apesLive', JSON.stringify({ pin, name, token })); } catch {}
+        enterGame();
+        if (m.state === 'lobby') { $('waitSub').textContent = 'See your nickname on the big screen. Waiting for the teacher to start…'; show('v-wait'); }
+        else if (m.state === 'reveal') { $('waitSub').textContent = 'Next question coming up…'; show('v-wait'); }
+        return;
+      case 'question': return showQuestion(m);
+      case 'ack': lockIn(m.choice); return;
+      case 'reveal': return showReveal(m);
+      case 'final': return showFinal(m);
+      case 'kicked': joined = false; closedByUs = true; try { localStorage.removeItem('apesLive'); } catch {} msg('Removed from game', 'The teacher removed you.', true); return;
+      case 'closed': joined = false; closedByUs = true; try { localStorage.removeItem('apesLive'); } catch {} msg('Game over', 'The teacher closed this game.', true); return;
+    }
+  }
+
+  function msg(big, sub, btn){
+    cancelAnimationFrame(raf);
+    $('msgBig').textContent = big; $('msgSub').textContent = sub || '';
+    $('msgBtn').classList.toggle('hidden', !btn);
+    show('v-msg');
+  }
+  $('msgBtn').onclick = () => location.href = '/';
+
+  function showQuestion(m){
+    enterGame();
+    qIndex = m.index; answered = false;
+    qTotalMs = m.timeLimit * 1000; qEnd = performance.now() + m.remainingMs;
+    $('qNum').textContent = 'Question ' + (m.index + 1) + ' of ' + m.total;
+    $('qText').textContent = m.q;
+    const t = $('qTiles'); t.innerHTML = '';
+    t.classList.toggle('two', m.options.length === 2);
+    m.options.forEach((o, i) => {
+      const b = document.createElement('button');
+      b.className = 'tile t' + i; b.dataset.i = i;
+      b.innerHTML = SHAPES[i];
+      const s = document.createElement('span'); s.className = 'txt'; s.textContent = o; b.appendChild(s);
+      b.onclick = () => choose(i, b);
+      t.appendChild(b);
+    });
+    show('v-q');
+    tick();
+  }
+
+  function choose(i, btn){
+    if (answered) return;
+    answered = true;
+    send({ t:'p:answer', q:qIndex, choice:i });
+    lockIn(i);
+  }
+  function lockIn(i){
+    answered = true;
+    const src = document.querySelector('#qTiles .tile[data-i="' + i + '"]');
+    const wrap = $('lockedTile'); wrap.innerHTML = '';
+    if (src) { const c = src.cloneNode(true); c.onclick = null; c.disabled = true; wrap.appendChild(c); }
+    show('v-locked');
+  }
+
+  function tick(){
+    cancelAnimationFrame(raf);
+    const bar = $('qTimer'), fill = bar.firstElementChild;
+    (function loop(){
+      const left = Math.max(0, qEnd - performance.now());
+      fill.style.transform = 'scaleX(' + (left / qTotalMs) + ')';
+      bar.classList.toggle('low', left < 5000);
+      $('qTime').textContent = Math.ceil(left / 1000) + 's';
+      if (left > 0) raf = requestAnimationFrame(loop);
+    })();
+  }
+
+  function pill(t){ const d = document.createElement('div'); d.className = 'pill'; d.textContent = t; return d; }
+  function showReveal(m){
+    cancelAnimationFrame(raf);
+    $('meScore').textContent = m.score;
+    const b = $('resBadge');
+    if (m.yourChoice === null) { b.className = 'badge none'; b.textContent = "Time's up"; }
+    else if (m.right) { b.className = 'badge good'; b.textContent = 'Correct!'; }
+    else { b.className = 'badge bad'; b.textContent = 'Not quite'; }
+    $('resPts').textContent = m.right ? '+' + m.gained : '+0';
+    const st = $('resStat'); st.innerHTML = '';
+    st.appendChild(pill('Rank ' + m.rank + ' of ' + m.of));
+    st.appendChild(pill(m.score + ' pts'));
+    if (m.streak >= 2) st.appendChild(pill('🔥 ' + m.streak + ' in a row'));
+    if (m.rank > 1 && m.ahead) st.appendChild(pill(m.behind + ' behind ' + m.ahead));
+    const ex = $('resExplain'); ex.textContent = m.explain || ''; ex.classList.toggle('hidden', !m.explain);
+    show('v-res');
+  }
+
+  function showFinal(m){
+    cancelAnimationFrame(raf);
+    $('meScore').textContent = m.score;
+    $('finBadge').textContent = m.rank === 1 ? '🏆 You won!' : (m.rank <= 3 ? '🎉 Top 3!' : 'Finished #' + m.rank);
+    $('finScore').textContent = m.score + ' pts';
+    const st = $('finStat'); st.innerHTML = '';
+    st.appendChild(pill(m.correct + ' of ' + m.total + ' correct'));
+    st.appendChild(pill('Rank ' + m.rank + ' of ' + m.of));
+    const pod = $('finPodium'); pod.innerHTML = '';
+    (m.podium || []).forEach((p, i) => {
+      const d = document.createElement('div');
+      const a = document.createElement('span'); a.textContent = ['🥇','🥈','🥉'][i] + ' ' + p.name;
+      const b = document.createElement('span'); b.textContent = p.score;
+      d.appendChild(a); d.appendChild(b); pod.appendChild(d);
+    });
+    enterGame(); show('v-final');
+    try { localStorage.removeItem('apesLive'); } catch {}
+  }
+
+  // Auto-rejoin after a page refresh or phone sleep
+  if (params.get('pin') || (() => { try { return JSON.parse(localStorage.getItem('apesLive')||'null'); } catch { return null; } })()) {
+    let saved = null; try { saved = JSON.parse(localStorage.getItem('apesLive') || 'null'); } catch {}
+    if (saved && saved.token && saved.pin && (!params.get('pin') || params.get('pin') === saved.pin)) {
+      pin = saved.pin; name = saved.name; token = saved.token;
+      connect(() => send({ t:'p:join', pin, name, token }));
+    }
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && joined && (!ws || ws.readyState > 1)) connect(() => send({ t:'p:join', pin, name, token }));
+  });
+})();
+</script>
+</body>
+</html>

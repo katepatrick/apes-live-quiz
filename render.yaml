@@ -1,0 +1,12 @@
+# One-click-ish deploy on Render.com (free plan works; it sleeps after ~15 min idle)
+services:
+  - type: web
+    name: apes-live-quiz
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /healthz
+    envVars:
+      - key: HOST_KEY
+        sync: false   # set a teacher password in the Render dashboard

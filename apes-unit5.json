@@ -1,0 +1,775 @@
+{
+  "title": "APES Unit 5: Land and Water Use",
+  "description": "Modules 24-34 (Friedland & Relyea, 4e). Questions are original, written from the module lecture slides.",
+  "modules": {
+    "24": "Land use, the commons & forestry",
+    "25": "Agricultural revolutions & Green Revolution",
+    "26": "Tilling, slash-and-burn & fertilizer",
+    "27": "Irrigation, aquifers & pesticides",
+    "28": "Meat production & overfishing",
+    "29": "Mining",
+    "30": "Urbanization & urban runoff",
+    "31": "Ecological & carbon footprints",
+    "32": "Sustainability & indicators",
+    "33": "IPM & sustainable agriculture",
+    "34": "Aquaculture & sustainable forestry"
+  },
+  "questions": [
+    {
+      "module": "24",
+      "q": "A coastal town lets every fisher catch as many fish as they like. Each boat keeps catching more, and the fish population crashes. This is an example of:",
+      "options": ["The tragedy of the commons", "Economies of scale", "An energy subsidy", "Sustainable development"],
+      "answer": 0,
+      "explain": "A shared, limited resource that no one regulates tends to be overused and depleted: the tragedy of the commons."
+    },
+    {
+      "module": "24",
+      "q": "The price of a pair of jeans does not include the cost of the river pollution the factory caused. This unpriced cost is called a(n):",
+      "options": ["Subsidy", "Externality", "Royalty", "Tailing"],
+      "answer": 1,
+      "explain": "An externality is a cost that results from producing or buying something but is not included in its price."
+    },
+    {
+      "module": "24",
+      "q": "Which U.S. agency manages public land mainly for recreation and conservation, such as Yellowstone and Yosemite?",
+      "options": ["Bureau of Land Management", "U.S. Forest Service", "National Park Service", "Fish and Wildlife Service"],
+      "answer": 2,
+      "explain": "The National Park Service focuses on recreation and conservation. BLM and USFS allow grazing, mining and timber; FWS focuses on wildlife."
+    },
+    {
+      "module": "24",
+      "q": "Which agency's lands are managed for wildlife conservation, along with hunting and recreation?",
+      "options": ["Fish and Wildlife Service", "Bureau of Land Management", "U.S. Forest Service", "Environmental Protection Agency"],
+      "answer": 0,
+      "explain": "The U.S. Fish and Wildlife Service manages lands for wildlife conservation, hunting and recreation."
+    },
+    {
+      "module": "24",
+      "q": "Which is a likely result of overgrazing on rangeland?",
+      "options": ["Increased biodiversity", "Reduced soil erosion", "Loss of biodiversity and increased erosion", "Higher soil organic matter"],
+      "answer": 2,
+      "explain": "When rangeland is overused, plant cover and biodiversity decline and bare soil erodes."
+    },
+    {
+      "module": "24",
+      "q": "Compared with selective cutting, clear-cutting is:",
+      "options": ["Cheaper per tree harvested but more disruptive and prone to erosion", "More expensive and causes less erosion", "Harmless to soil because all trees are removed at once", "Used only on rangeland"],
+      "answer": 0,
+      "explain": "Clear-cutting is economically efficient, but removing nearly all trees disturbs the ecosystem and causes erosion."
+    },
+    {
+      "module": "24",
+      "q": "Why do loggers often avoid selective cutting even though it disturbs less land?",
+      "options": ["It is illegal on federal land", "It requires repeated trips and yields less timber at a time, so it earns less", "It destroys more habitat per tree than clear-cutting", "It only works on tree plantations"],
+      "answer": 1,
+      "explain": "Selective cutting removes few trees per visit, so it is less economically beneficial."
+    },
+    {
+      "module": "24",
+      "q": "A land area planted with a single, fast-growing tree species for logging is a:",
+      "options": ["Old-growth forest", "Rangeland", "Tree plantation", "Wildlife refuge"],
+      "answer": 2,
+      "explain": "Tree plantations grow one fast-growing species to be harvested for wood."
+    },
+    {
+      "module": "24",
+      "q": "Which law requires an environmental assessment before federal money or federal land is used for a project?",
+      "options": ["Endangered Species Act", "Delaney Clause", "National Environmental Policy Act (NEPA)", "Clean Air Act"],
+      "answer": 2,
+      "explain": "NEPA mandates an environmental assessment for projects using federal funds or federal land."
+    },
+    {
+      "module": "24",
+      "q": "A developer finds an endangered plant on a parcel. Which law may stop the land from being used commercially?",
+      "options": ["Endangered Species Act", "NEPA", "Delaney Clause", "Green Revolution Act"],
+      "answer": 0,
+      "explain": "If an endangered or threatened species lives on the land, the Endangered Species Act can prevent commercial use."
+    },
+
+    {
+      "module": "25",
+      "q": "During which period were wild plants and animals first domesticated, about 11,000-12,000 years ago?",
+      "options": ["First Agricultural Revolution", "Second Agricultural Revolution", "Green Revolution", "Industrial Revolution"],
+      "answer": 0,
+      "explain": "Domestication of plants and animals marks the First Agricultural Revolution."
+    },
+    {
+      "module": "25",
+      "q": "The Second Agricultural Revolution (1600s-1930s) is best known for:",
+      "options": ["Genetically modified crops", "The start of mechanized plowing, planting and harvesting", "Drip irrigation", "Organic certification"],
+      "answer": 1,
+      "explain": "Mechanization of farming began in the Second Agricultural Revolution."
+    },
+    {
+      "module": "25",
+      "q": "Which of these was NOT an innovation of the Green Revolution?",
+      "options": ["Synthetic fertilizers", "Pesticides", "Monocropping", "Nomadic grazing"],
+      "answer": 3,
+      "explain": "The Green Revolution added mechanization, fertilizers, irrigation, pesticides and monocropping. Nomadic grazing is a traditional practice."
+    },
+    {
+      "module": "25",
+      "q": "As farms mechanize and grow larger, the average cost per unit of food falls while output rises. This is:",
+      "options": ["Energy subsidy", "Economies of scale", "Tragedy of the commons", "Salinization"],
+      "answer": 1,
+      "explain": "Economies of scale means average costs decrease as output increases."
+    },
+    {
+      "module": "25",
+      "q": "What makes synthetic fertilizer different from organic fertilizer?",
+      "options": ["It is made from plant and animal matter", "It is produced commercially using fossil fuels", "It contains no nitrogen", "It adds large amounts of organic matter to soil"],
+      "answer": 1,
+      "explain": "Synthetic fertilizers are manufactured commercially using fossil fuels; organic fertilizers come from plant and animal matter."
+    },
+    {
+      "module": "25",
+      "q": "A farmer plants thousands of acres of one crop, year after year. Which problem is MOST likely to increase?",
+      "options": ["Pest outbreaks and the need for pesticides", "Soil organic matter", "Crop diversity", "Natural predator populations"],
+      "answer": 0,
+      "explain": "Monocropping can attract more pests, deplete soil of specific nutrients and increase the need for pesticides and fertilizer."
+    },
+    {
+      "module": "25",
+      "q": "Choosing which plants or animals get to reproduce, rather than letting nature decide, is called:",
+      "options": ["Artificial selection", "Natural selection", "Crop rotation", "Desertification"],
+      "answer": 0,
+      "explain": "Artificial selection is humans choosing which organisms reproduce."
+    },
+    {
+      "module": "25",
+      "q": "Which is a commonly cited CONCERN about GMO crops?",
+      "options": ["Lower crop yields", "Possible effects on biodiversity", "Higher cost of production for every farmer", "They require more tilling"],
+      "answer": 1,
+      "explain": "Concerns include possible allergies, effects on biodiversity and how GMOs are regulated. Benefits include higher yields and profits."
+    },
+    {
+      "module": "25",
+      "q": "An energy subsidy in agriculture means that:",
+      "options": ["Farmers receive free electricity", "More energy (human and fossil fuel) goes into producing food than the food provides", "Crops store more energy than the sun supplies", "Food travels shorter distances"],
+      "answer": 1,
+      "explain": "Mechanized farming puts in more energy from humans and fossil fuels than it gets back as food energy, and shipping food farther increases the subsidy."
+    },
+    {
+      "module": "25",
+      "q": "Farming mainly to feed one's own family is called:",
+      "options": ["Industrial agriculture", "Subsistence farming", "Agribusiness", "Monocropping"],
+      "answer": 1,
+      "explain": "Subsistence farming produces food mostly for the farmer's own family."
+    },
+
+    {
+      "module": "26",
+      "q": "Which is a NEGATIVE effect of plowing and tilling?",
+      "options": ["Reduced wind erosion", "Higher rates of wind erosion and more sediment in water", "Decreased decomposition", "Soil that becomes less compacted over time"],
+      "answer": 1,
+      "explain": "Tilling exposes soil, raising wind erosion and sediment in runoff, increasing decomposition (more greenhouse gases), and causing long-term compaction."
+    },
+    {
+      "module": "26",
+      "q": "In slash-and-burn agriculture, burning vegetation helps crops because it:",
+      "options": ["Removes all nutrients from the soil", "Releases nutrients stored in the plants into the soil", "Adds nitrogen from the atmosphere", "Increases soil organic matter permanently"],
+      "answer": 1,
+      "explain": "In nutrient-poor tropical soils, nutrients are held in the vegetation. Burning releases them for a short time."
+    },
+    {
+      "module": "26",
+      "q": "Why do slash-and-burn farmers have to move to new land every few years?",
+      "options": ["The soil becomes depleted of nutrients", "Burning is illegal after three years", "Crops stop needing nutrients", "Rainfall increases"],
+      "answer": 0,
+      "explain": "The nutrients are quickly used up or washed away, so farmers practice shifting agriculture."
+    },
+    {
+      "module": "26",
+      "q": "Which statement about the climate effects of slash-and-burn is correct?",
+      "options": ["It removes CO2 from the atmosphere", "Burning releases CO2 and removing forest reduces carbon storage", "It has no effect on greenhouse gases", "It increases carbon sequestration"],
+      "answer": 1,
+      "explain": "Burning releases CO and CO2, and removing rainforest means less CO2 is taken up and stored."
+    },
+    {
+      "module": "26",
+      "q": "The three major nutrients supplied by modern fertilizers are:",
+      "options": ["Carbon, hydrogen, oxygen", "Nitrogen, phosphorus, potassium", "Calcium, sodium, chlorine", "Sulfur, iron, zinc"],
+      "answer": 1,
+      "explain": "N-P-K: nitrogen, phosphorus and potassium."
+    },
+    {
+      "module": "26",
+      "q": "Fertilizer runs off a farm into a nearby lake. What is the most likely sequence of events?",
+      "options": ["Algal bloom, then low-oxygen conditions", "Lower algae, then higher oxygen", "Salinization of the lake", "Increased lake biodiversity"],
+      "answer": 0,
+      "explain": "Extra nutrients fuel algal blooms; when the algae die and decompose, oxygen levels in the water drop."
+    },
+    {
+      "module": "26",
+      "q": "Making synthetic nitrogen fertilizer contributes to climate change because:",
+      "options": ["It removes forests", "Fossil fuels used in production release CO2, and nitrogen compounds produce nitrous oxide", "It releases ozone-depleting chemicals only", "It lowers soil temperatures"],
+      "answer": 1,
+      "explain": "Producing the fertilizer releases CO2, and nitrogen compounds in soil produce nitrous oxide, another greenhouse gas."
+    },
+    {
+      "module": "26",
+      "q": "Compared with organic matter, relying only on synthetic fertilizer leaves soil:",
+      "options": ["With higher water retention", "With no added organic matter, so cation exchange capacity and water retention do not improve", "More resistant to erosion", "With greater microbial activity"],
+      "answer": 1,
+      "explain": "Synthetic fertilizers supply nutrients but not organic matter, so soil CEC and water-holding ability don't increase."
+    },
+    {
+      "module": "26",
+      "q": "Moving to a new plot of land because the soil on the old plot is nutrient-depleted is called:",
+      "options": ["Terracing", "Shifting agriculture", "Intercropping", "Contour plowing"],
+      "answer": 1,
+      "explain": "Shifting agriculture is the pattern of moving on after soil nutrients are exhausted."
+    },
+
+    {
+      "module": "27",
+      "q": "Worldwide, about 70% of fresh water use goes to:",
+      "options": ["Household use", "Irrigation for agriculture", "Manufacturing", "Cooling power plants"],
+      "answer": 1,
+      "explain": "Agriculture is the largest water use globally, mostly irrigation."
+    },
+    {
+      "module": "27",
+      "q": "An underground layer of permeable rock or sediment that holds groundwater is a(n):",
+      "options": ["Aquifer", "Watershed", "Tailing", "Aquaculture"],
+      "answer": 0,
+      "explain": "An aquifer stores groundwater in pore spaces, like a sponge."
+    },
+    {
+      "module": "27",
+      "q": "A confined aquifer differs from an unconfined aquifer because it is:",
+      "options": ["Surrounded by impermeable rock or clay", "Closer to the surface", "Recharged within weeks", "Always saltwater"],
+      "answer": 0,
+      "explain": "Confined aquifers are bounded by impermeable material. Drilling into one can create an artesian well."
+    },
+    {
+      "module": "27",
+      "q": "When rain percolates down through soil and enters the aquifer, this is called:",
+      "options": ["Groundwater recharge", "Saltwater intrusion", "Salinization", "Runoff"],
+      "answer": 0,
+      "explain": "Water moving down into the aquifer is groundwater recharge."
+    },
+    {
+      "module": "27",
+      "q": "Which irrigation method loses the LEAST water to evaporation and runoff (about 5%)?",
+      "options": ["Furrow", "Flood", "Spray", "Drip"],
+      "answer": 3,
+      "explain": "Drip irrigation delivers water slowly right to the roots, losing only about 5%."
+    },
+    {
+      "module": "27",
+      "q": "A farmer applies 1,000 m³ of water using furrow irrigation, which loses about 33%. About how much reaches the crops?",
+      "options": ["330 m³", "500 m³", "670 m³", "950 m³"],
+      "answer": 2,
+      "time": 30,
+      "explain": "1,000 x (1 - 0.33) = 670 m³. (Drip irrigation at 5% loss would deliver about 950 m³.)"
+    },
+    {
+      "module": "27",
+      "q": "In dry climates, heavy irrigation can cause salinization because:",
+      "options": ["Water evaporates and leaves dissolved salts behind", "Salts are added by fertilizer only", "Plants release salt through their roots", "Rain washes salts upward"],
+      "answer": 0,
+      "explain": "As irrigation water evaporates, salts build up in the soil and can stunt or kill plants."
+    },
+    {
+      "module": "27",
+      "q": "Over-irrigating so that the A and B horizons stay flooded and plant roots are harmed is called:",
+      "options": ["Waterlogging", "Desertification", "Leaching", "Eutrophication"],
+      "answer": 0,
+      "explain": "Waterlogging floods root zones; it often leads to salinization as well."
+    },
+    {
+      "module": "27",
+      "q": "Many wells pumping from the same aquifer without limits cause a cone of depression. What happens to the water table?",
+      "options": ["It rises for everyone", "It drops around the wells, lowering the water source for all users", "It stays the same", "It becomes confined"],
+      "answer": 1,
+      "explain": "A cone of depression is a dip in the water table around heavily pumped wells."
+    },
+    {
+      "module": "27",
+      "q": "A pesticide designed to kill fungi is a:",
+      "options": ["Rodenticide", "Herbicide", "Fungicide", "Insecticide"],
+      "answer": 2,
+      "explain": "Fungicides target fungi; rodenticides target rodents; herbicides target weeds."
+    },
+    {
+      "module": "27",
+      "q": "Which pesticide stays in the environment for years to decades?",
+      "options": ["Persistent pesticide", "Nonpersistent pesticide", "Selective pesticide", "Biocontrol"],
+      "answer": 0,
+      "explain": "Persistent pesticides remain for years to decades. Nonpersistent ones break down in weeks to months but may need to be applied more often."
+    },
+    {
+      "module": "27",
+      "q": "Pests that survive a pesticide pass resistance on to offspring, so farmers apply more and stronger chemicals. This cycle is the:",
+      "options": ["Pesticide treadmill", "Green Revolution", "Cone of depression", "Energy subsidy"],
+      "answer": 0,
+      "explain": "Natural selection favors resistant pests, driving the pesticide treadmill."
+    },
+    {
+      "module": "27",
+      "q": "Herbicide-tolerant GMO crops mainly allow farmers to:",
+      "options": ["Stop using herbicides", "Spray herbicide without harming the crop, which saves more crop but does not reduce pesticide use", "Eliminate weeds permanently", "Skip irrigation"],
+      "answer": 1,
+      "explain": "Herbicide-tolerant crops survive spraying. This protects yield but doesn't cut pesticide use."
+    },
+
+    {
+      "module": "28",
+      "q": "Why is producing meat less efficient than producing crops for direct human consumption?",
+      "options": ["Animals need more water and land to grow the feed they eat", "Animals photosynthesize", "Crops require more processing", "Meat contains fewer calories"],
+      "answer": 0,
+      "explain": "Raising animals requires land and water to grow their feed, so meat uses more resources per calorie."
+    },
+    {
+      "module": "28",
+      "q": "Large indoor or outdoor facilities that crowd animals together for maximum meat output are called:",
+      "options": ["Nomadic herds", "Concentrated animal feeding operations (CAFOs)", "Free-range ranches", "Aquaculture ponds"],
+      "answer": 1,
+      "explain": "CAFOs, or 'factory farms', maximize animals per area."
+    },
+    {
+      "module": "28",
+      "q": "Which is a DRAWBACK of CAFOs?",
+      "options": ["Lower feeding efficiency", "Manure lagoons and heavy antibiotic use", "Greater land costs", "Animals fed only natural grasses"],
+      "answer": 1,
+      "explain": "CAFO downsides include confinement, grain feeding, antibiotics, hormones and manure lagoons. Benefits include minimized land costs and feeding efficiency."
+    },
+    {
+      "module": "28",
+      "q": "Roughly what percent of the energy at one trophic level is available to the next?",
+      "options": ["About 10%", "About 50%", "About 90%", "100%"],
+      "answer": 0,
+      "explain": "Only about 10% (10-15% in the lecture) is passed up. That is why eating beef wastes much more of the original crop energy than eating grain directly."
+    },
+    {
+      "module": "28",
+      "q": "Moving herds to seasonally productive feeding grounds, often over long distances, is:",
+      "options": ["Nomadic grazing", "Overgrazing", "Feedlot finishing", "Rotational monocropping"],
+      "answer": 0,
+      "explain": "Nomadic grazing follows productive pastures. Free-range grazing keeps animals on grass outdoors most of their lives."
+    },
+    {
+      "module": "28",
+      "q": "Turning productive, low-precipitation land into desert through overgrazing, logging or climate change is called:",
+      "options": ["Salinization", "Desertification", "Eutrophication", "Urbanization"],
+      "answer": 1,
+      "explain": "Desertification is degradation of arable land into unproductive desert-like land."
+    },
+    {
+      "module": "28",
+      "q": "A fishery collapse is generally defined as a decline of the fish population of:",
+      "options": ["10% or more", "25% or more", "50% or more", "90% or more"],
+      "answer": 3,
+      "explain": "A collapse means 90% or more of the fish population has declined."
+    },
+    {
+      "module": "28",
+      "q": "Sea turtles and dolphins caught accidentally in nets meant for other fish are:",
+      "options": ["Bycatch", "Tailings", "Placer deposits", "Biocontrols"],
+      "answer": 0,
+      "explain": "Bycatch is the unintentional capture of nontarget species."
+    },
+    {
+      "module": "28",
+      "q": "Which policy helps protect fisheries?",
+      "options": ["Unlimited catch quotas", "Maximum catch limits and shorter harvest seasons", "Larger bottom trawls", "Removing fishing regulations"],
+      "answer": 1,
+      "explain": "Setting maximum catch limits and shortening seasons are sustainable-fishing laws."
+    },
+    {
+      "module": "28",
+      "q": "Which fishing method drags a large net along the ocean floor?",
+      "options": ["Gill net", "Bottom trawl net", "Purse-seine net", "Placer net"],
+      "answer": 1,
+      "explain": "Bottom trawl nets are dragged along the seafloor, capturing large catches (and lots of bycatch)."
+    },
+
+    {
+      "module": "29",
+      "q": "A concentrated accumulation of minerals that is economically worth mining is a(n):",
+      "options": ["Ore", "Tailing", "Aquifer", "Reserve of metals only"],
+      "answer": 0,
+      "explain": "Ores are mineral concentrations that are economically viable to extract."
+    },
+    {
+      "module": "29",
+      "q": "The average concentration of an element in Earth's crust is its:",
+      "options": ["Crustal abundance", "Ore grade", "Reserve", "Tailing ratio"],
+      "answer": 0,
+      "explain": "Crustal abundance is the average concentration of an element in the crust."
+    },
+    {
+      "module": "29",
+      "q": "Removing long strips of surface rock to reach a resource is:",
+      "options": ["Strip mining", "Placer mining", "Subsurface mining", "Aquaculture"],
+      "answer": 0,
+      "explain": "Strip mining removes strips of surface rock or soil to expose the resource."
+    },
+    {
+      "module": "29",
+      "q": "Which mining method uses explosives to remove the top of a mountain?",
+      "options": ["Placer mining", "Mountaintop removal", "Open-pit mining", "Subsurface mining"],
+      "answer": 1,
+      "explain": "Mountaintop removal blasts away the summit to reach resources below."
+    },
+    {
+      "module": "29",
+      "q": "Searching river sediments for gold or gemstones is:",
+      "options": ["Placer mining", "Mountaintop removal", "Strip mining", "Open-pit mining"],
+      "answer": 0,
+      "explain": "Placer mining recovers minerals, metals and stones from river sediments."
+    },
+    {
+      "module": "29",
+      "q": "Waste material left over after the wanted resource is removed from ore is called:",
+      "options": ["Reserves", "Overburden credits", "Mine tailings", "Crustal abundance"],
+      "answer": 2,
+      "explain": "Mine tailings are the unwanted waste returned to the site."
+    },
+    {
+      "module": "29",
+      "q": "Subsurface mining is mining deeper than about:",
+      "options": ["10 m", "100 m", "1,000 m", "5,000 m"],
+      "answer": 1,
+      "explain": "In the lecture, subsurface mining is more than 100 m (328 ft) below the surface."
+    },
+    {
+      "module": "29",
+      "q": "Why can subsurface mining be economically prohibitive?",
+      "options": ["It has no environmental impact", "Safety and insurance concerns make it expensive", "Ores are not found underground", "It always needs less equipment"],
+      "answer": 1,
+      "explain": "Subsurface mining is usually more expensive than surface mining because of safety and insurance costs."
+    },
+    {
+      "module": "29",
+      "q": "Which resources are described as finite reserves, meaning there is a fixed amount in the Earth?",
+      "options": ["Ores and metals", "Wind and solar energy", "Fish stocks", "Forest regrowth"],
+      "answer": 0,
+      "explain": "Metals and ores are finite: once the reserves are mined, they are gone on human timescales."
+    },
+
+    {
+      "module": "30",
+      "q": "A town has 120,000 people living on 250 km². Using the threshold of about 386 people per km², is it an urban area?",
+      "options": ["Yes, density is 480 people/km²", "No, density is 300 people/km²", "Yes, density is 48 people/km²", "No, density is 120 people/km²"],
+      "answer": 0,
+      "time": 30,
+      "explain": "120,000 / 250 = 480 people per km², which is above the 386 per km² threshold."
+    },
+    {
+      "module": "30",
+      "q": "Compared with developed countries, developing countries have:",
+      "options": ["A higher percent urban and fewer of the largest cities", "A lower percent urban but most of the world's 20 largest cities", "Universal sewage and clean water in all cities", "No urban growth"],
+      "answer": 1,
+      "explain": "In the lecture, developing nations are about 48% urban versus 75% for developed, yet hold 17 of the 20 largest cities, and some urban areas lack safe water and sewage."
+    },
+    {
+      "module": "30",
+      "q": "Residential areas around a city that are less dense than the city itself are:",
+      "options": ["Suburbs", "Rangelands", "Ores", "Plantations"],
+      "answer": 0,
+      "explain": "Suburbs surround metropolitan centers with lower population density. Exurbs are similar but not connected to a central city."
+    },
+    {
+      "module": "30",
+      "q": "The spread of urban development into rural land, with houses, shops and roads separated by long distances, is:",
+      "options": ["Urban sprawl", "Smart growth", "Desertification", "Placer development"],
+      "answer": 0,
+      "explain": "Urban sprawl is the movement of urbanized areas into rural land."
+    },
+    {
+      "module": "30",
+      "q": "Which is a main CAUSE of urban sprawl?",
+      "options": ["Fewer automobiles", "Government policies funding highways and subsidizing suburban mortgages", "Rising city tax rates only", "Rural land shortages"],
+      "answer": 1,
+      "explain": "Cars and highways, affordable suburban living, urban blight and government policies all drive sprawl."
+    },
+    {
+      "module": "30",
+      "q": "Which is a characteristic of smart growth?",
+      "options": ["Walkable neighborhoods that mix homes, shops and workplaces", "Separating all land uses by highways", "Converting open space to parking", "Maximizing commuting distance"],
+      "answer": 0,
+      "explain": "Smart growth favors walkable neighborhoods, mixed land use, stakeholder collaboration and preserved open space."
+    },
+    {
+      "module": "30",
+      "q": "Heavy groundwater pumping near a coast lowers the freshwater level, and seawater moves into the aquifer. This is:",
+      "options": ["Saltwater intrusion", "Salinization by irrigation", "Eutrophication", "Groundwater recharge"],
+      "answer": 0,
+      "explain": "Saltwater intrusion happens when a cone of depression near the shore lets salt water flow into freshwater aquifers."
+    },
+    {
+      "module": "30",
+      "q": "Why do parking lots and roads increase flooding?",
+      "options": ["They are impervious, so less water infiltrates and more runs off", "They absorb rain like soil", "They increase evapotranspiration", "They recharge aquifers faster"],
+      "answer": 0,
+      "explain": "Impervious surfaces block infiltration and increase surface runoff."
+    },
+    {
+      "module": "30",
+      "q": "Which strategy would REDUCE urban runoff?",
+      "options": ["Paving more surfaces", "Planting trees and replacing pavement with permeable surfaces", "Draining rain quickly into storm sewers only", "Removing all green space"],
+      "answer": 1,
+      "explain": "Reducing impervious surfaces, adding trees and capturing rainwater all increase infiltration and evapotranspiration."
+    },
+
+    {
+      "module": "31",
+      "q": "The area of land and water needed to produce a person's resources and absorb their waste is their:",
+      "options": ["Ecological footprint", "Carbon footprint", "Water footprint only", "Energy subsidy"],
+      "answer": 0,
+      "explain": "Ecological footprint measures the area of productive land and water required, usually in hectares."
+    },
+    {
+      "module": "31",
+      "q": "One hectare is equal to about how many acres?",
+      "options": ["0.4", "2.47", "10", "24.7"],
+      "answer": 1,
+      "explain": "1 ha = 2.47 acres. (So 10 ha is about 24.7 acres.)"
+    },
+    {
+      "module": "31",
+      "q": "A person's ecological footprint is 8 hectares. About how many acres is that?",
+      "options": ["3.2 acres", "8 acres", "19.8 acres", "24.7 acres"],
+      "answer": 2,
+      "time": 30,
+      "explain": "8 ha x 2.47 acres/ha = 19.76, or about 19.8 acres."
+    },
+    {
+      "module": "31",
+      "q": "Which best describes the carbon footprint?",
+      "options": ["The amount of land needed to grow food", "Total CO2 and other greenhouse gas emissions caused directly and indirectly by a person, country or group", "The number of trees needed to build a home", "The water used per person each day"],
+      "answer": 1,
+      "explain": "The carbon footprint measures greenhouse gas emissions, whereas the ecological footprint measures area."
+    },
+    {
+      "module": "31",
+      "q": "Which is NOT included when calculating an ecological footprint?",
+      "options": ["Food eaten", "Water used", "Housing and transportation", "Number of siblings"],
+      "answer": 3,
+      "explain": "Footprints add up land needed for food, water, energy, clothing, housing and transportation."
+    },
+    {
+      "module": "31",
+      "q": "People in developed nations tend to have ecological footprints that are:",
+      "options": ["Larger than those in developing nations", "Smaller than those in developing nations", "Identical worldwide", "Unrelated to consumption"],
+      "answer": 0,
+      "explain": "Higher consumption in developed nations means larger footprints per person."
+    },
+    {
+      "module": "31",
+      "q": "True or false: the carbon footprint only counts carbon dioxide, never methane.",
+      "options": ["True", "False"],
+      "answer": 1,
+      "explain": "CO2 is the main gas counted, but other greenhouse gases such as methane (CH4) can be included."
+    },
+
+    {
+      "module": "32",
+      "q": "Using a resource without jeopardizing future generations' ability to use it is:",
+      "options": ["Sustainability", "Energy subsidy", "Externality", "Overharvesting"],
+      "answer": 0,
+      "explain": "That is the definition of sustainability."
+    },
+    {
+      "module": "32",
+      "q": "Using a renewable resource too fast can turn it into a:",
+      "options": ["Sustainable resource", "Nonrenewable (unsustainable) resource", "Ore", "Biocontrol"],
+      "answer": 1,
+      "explain": "If a renewable resource is used faster than it regenerates, it behaves like a nonrenewable one."
+    },
+    {
+      "module": "32",
+      "q": "Development that balances human well-being today with resource management for future generations is called:",
+      "options": ["Sustainable development", "Urban sprawl", "Industrial agriculture", "Smart harvesting"],
+      "answer": 0,
+      "explain": "Sustainable development meets today's needs without compromising the future."
+    },
+    {
+      "module": "32",
+      "q": "The maximum sustainable yield (MSY) is the largest harvest that:",
+      "options": ["Can be taken once before collapse", "Can be taken indefinitely without depleting the population", "Equals the carrying capacity", "Ignores birth and death rates"],
+      "answer": 1,
+      "explain": "MSY is the maximum amount you can take from a resource and keep harvesting it indefinitely."
+    },
+    {
+      "module": "32",
+      "q": "A fish population has a carrying capacity (K) of 10,000. At what population size is harvest generally kept to achieve MSY?",
+      "options": ["1,000", "2,500", "5,000", "10,000"],
+      "answer": 2,
+      "time": 30,
+      "explain": "MSY is typically achieved by keeping the population at about half of carrying capacity, here 5,000."
+    },
+    {
+      "module": "32",
+      "q": "Why is MSY hard to set accurately?",
+      "options": ["Birth rates, death rates and carrying capacity are hard to measure, and effects can take years to show", "Fish never reproduce", "Habitat has no effect on populations", "Carrying capacity never changes"],
+      "answer": 0,
+      "explain": "Uncertainty in rates and carrying capacity, delayed feedback, and externalities such as habitat loss and pollution all complicate MSY."
+    },
+    {
+      "module": "32",
+      "q": "Which is a global-scale environmental indicator?",
+      "options": ["Biodiversity", "Price of lumber", "Number of mines", "Number of highways"],
+      "answer": 0,
+      "explain": "Global indicators include biodiversity, food production, global temperature and CO2, human population and resource depletion."
+    },
+    {
+      "module": "32",
+      "q": "Which factor does the lecture identify as affecting all other environmental indicators the most?",
+      "options": ["Human population size", "Fish prices", "Crop color", "Tree height"],
+      "answer": 0,
+      "explain": "More people create more demand for resources, affecting every other indicator."
+    },
+    {
+      "module": "32",
+      "q": "Rising CO2 from burning fossil fuels is an example of what kind of climate change?",
+      "options": ["Anthropogenic", "Natural only", "Volcanic", "Seasonal"],
+      "answer": 0,
+      "explain": "Anthropogenic means caused by humans."
+    },
+
+    {
+      "module": "33",
+      "q": "Integrated pest management (IPM) aims to:",
+      "options": ["Eliminate all pests using the strongest pesticide", "Control pests with several techniques while minimizing pesticide use", "Plant only one crop", "Replace all crops with GMOs"],
+      "answer": 1,
+      "explain": "IPM combines methods such as crop rotation, intercropping and biocontrol, using pesticides only in small amounts if needed."
+    },
+    {
+      "module": "33",
+      "q": "Planting a different crop on the same field each season to disrupt pest and disease cycles is:",
+      "options": ["Crop rotation", "Intercropping", "Monocropping", "Contour plowing"],
+      "answer": 0,
+      "explain": "Crop rotation prevents pests from settling in on a single crop."
+    },
+    {
+      "module": "33",
+      "q": "Growing two crops side by side at the same time so one attracts predators of the other's pests is:",
+      "options": ["Crop rotation", "Intercropping", "Slash-and-burn", "Terracing"],
+      "answer": 1,
+      "explain": "Intercropping uses spacing and plant interactions, such as attracting insect predators."
+    },
+    {
+      "module": "33",
+      "q": "Why must scientists study a species before introducing it as a biocontrol?",
+      "options": ["To be sure it eats the target pest and not something else", "To make it resistant to pesticides", "To raise crop prices", "To increase soil salinity"],
+      "answer": 0,
+      "explain": "An introduced species must consume the right pest, or it could create new problems."
+    },
+    {
+      "module": "33",
+      "q": "A farmer plows and plants rows parallel to the slope's elevation lines to slow erosion. This is:",
+      "options": ["Contour plowing", "Terracing", "Strip mining", "Flood irrigation"],
+      "answer": 0,
+      "explain": "Contour plowing follows the land's topographic contours."
+    },
+    {
+      "module": "33",
+      "q": "Shaping steep hillsides into flat, step-like fields is:",
+      "options": ["Contour plowing", "Strip cropping", "Terracing", "Agroforestry"],
+      "answer": 2,
+      "explain": "Terracing creates flat steps that slow water and reduce erosion."
+    },
+    {
+      "module": "33",
+      "q": "Planting rows of trees or shrubs at the edge of a field to block wind and prevent soil loss is:",
+      "options": ["Agroforestry (windbreak)", "Monocropping", "Clear-cutting", "Green manure"],
+      "answer": 0,
+      "explain": "Agroforestry plants vegetation as a windbreak to prevent wind and soil erosion."
+    },
+    {
+      "module": "33",
+      "q": "No-till agriculture helps soil by:",
+      "options": ["Leaving annual crop land unplowed between seasons", "Plowing twice a year", "Removing all plant residue", "Increasing runoff"],
+      "answer": 0,
+      "explain": "Skipping tillage reduces erosion, compaction and the release of stored carbon."
+    },
+    {
+      "module": "33",
+      "q": "Plants grown specifically to be plowed back into the soil at season's end are called:",
+      "options": ["Green manure", "Perennials", "Tailings", "Biocontrols"],
+      "answer": 0,
+      "explain": "Green manure adds organic matter and nutrients to the soil when it is plowed under."
+    },
+    {
+      "module": "33",
+      "q": "Rotating livestock among pastures so that no single pasture is overgrazed is:",
+      "options": ["Rotational grazing", "Nomadic grazing", "CAFO feeding", "Bycatch"],
+      "answer": 0,
+      "explain": "Rotational grazing gives pastures time to recover."
+    },
+    {
+      "module": "33",
+      "q": "Organic agriculture is defined by NOT using:",
+      "options": ["Crop rotation", "Synthetic pesticides or fertilizers", "Any water", "Natural predators"],
+      "answer": 1,
+      "explain": "Organic agriculture avoids synthetic pesticides and fertilizers and aims to build soil organic matter and biological activity."
+    },
+    {
+      "module": "33",
+      "q": "True or false: sustainable agriculture methods usually require more labor and cost but keep land productive over the long term.",
+      "options": ["True", "False"],
+      "answer": 0,
+      "explain": "The trade-off is higher short-term labor and cost for long-term productivity."
+    },
+
+    {
+      "module": "34",
+      "q": "Aquaculture helps meet demand for fish without:",
+      "options": ["Depleting wild fisheries", "Producing any waste", "Using any water", "Any risk of disease"],
+      "answer": 0,
+      "explain": "Raising fish allows more food production without taking extra fish from wild fisheries."
+    },
+    {
+      "module": "34",
+      "q": "Which is a criticism of aquaculture?",
+      "options": ["Nonnative fish may escape into the wild", "It always lowers food production", "It always increases fisheries collapse", "It uses no feed"],
+      "answer": 0,
+      "explain": "Escapes of nonnative fish, disease spreading through wastewater, and heavy use of feed and medication are common criticisms."
+    },
+    {
+      "module": "34",
+      "q": "Which aquaculture design best prevents fish escapes and disease spreading?",
+      "options": ["Open ocean net pens", "Above-ground, totally enclosed tanks", "Coastal ponds", "Nets in coastal waters"],
+      "answer": 1,
+      "explain": "Enclosed above-ground tanks keep fish and waste contained."
+    },
+    {
+      "module": "34",
+      "q": "Replanting trees after a clear-cut, which reduces erosion and begins removing CO2 from the air, is:",
+      "options": ["Reforestation", "Selective cutting", "Deforestation", "Slash-and-burn"],
+      "answer": 0,
+      "explain": "Reforestation restocks the forest."
+    },
+    {
+      "module": "34",
+      "q": "Sustainable forestry aims to produce wood while also providing:",
+      "options": ["Clean water, maximum biodiversity and maximum carbon sequestration", "The most profit in the shortest time", "Only a single tree species", "Fragmented habitat"],
+      "answer": 0,
+      "explain": "Sustainable forestry balances timber production with water, biodiversity and carbon storage."
+    },
+    {
+      "module": "34",
+      "q": "Which practice is part of sustainable forestry?",
+      "options": ["Avoiding habitat fragmentation", "Removing all species except one", "Using the heaviest machinery possible", "Maximizing wood use in products"],
+      "answer": 0,
+      "explain": "Other sustainable practices: logging with animals instead of heavy machinery, choosing species to maintain richness and evenness, and minimizing wood use."
+    },
+    {
+      "module": "34",
+      "q": "Decades of suppressing every forest fire led to:",
+      "options": ["Less dead biomass on the forest floor", "Large quantities of dead biomass, making later fires worse", "Fewer trees", "Faster reforestation"],
+      "answer": 1,
+      "explain": "Suppression allowed dead biomass to accumulate, fueling larger and hotter fires."
+    },
+    {
+      "module": "34",
+      "q": "Fires deliberately set under controlled conditions to prevent worse fires later are called:",
+      "options": ["Prescribed burns", "Slash-and-burn", "Clear-cuts", "Crown fires"],
+      "answer": 0,
+      "explain": "Prescribed burns reduce built-up fuel so wildfires are less severe."
+    }
+  ]
+}

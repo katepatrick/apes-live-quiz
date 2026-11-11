@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Host a quiz</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="h-wrap" id="app">
+  <div class="h-top">
+    <div class="logo">APES <span>Live</span></div>
+    <div class="info" id="topInfo"></div>
+  </div>
+
+  <!-- ============ SETUP ============ -->
+  <section id="s-setup" class="setup">
+    <h1>Set up a game</h1>
+    <p style="opacity:.85;margin:0 0 16px">Pick the content, then students join on their phones with a code.</p>
+    <div class="card">
+      <div class="field hidden" id="keyField"><label for="key">Teacher key</label><input id="key" type="password" autocomplete="off"></div>
+      <div class="field"><label for="bank">Question set</label><select id="bank"></select></div>
+      <div class="field"><label>Modules to include</label>
+        <div style="display:flex;gap:8px;margin-bottom:8px">
+          <button class="btn small ghost" id="modAll" style="background:#e8e1ce;color:var(--ink)">Select all</button>
+          <button class="btn small ghost" id="modNone" style="background:#e8e1ce;color:var(--ink)">Clear</button>
+        </div>
+        <div class="mods" id="mods"></div>
+      </div>
+      <div class="grid2">
+        <div class="field"><label for="count">Number of questions</label>
+          <select id="count"><option value="0">All selected</option><option value="10">10</option><option value="15">15</option><option value="20" selected>20</option><option value="30">30</option><option value="40">40</option></select></div>
+        <div class="field"><label for="time">Time per question</label>
+          <select id="time"><option value="10">10 seconds</option><option value="15">15 seconds</option><option value="20" selected>20 seconds</option><option value="30">30 seconds</option><option value="45">45 seconds</option><option value="60">60 seconds</option></select></div>
+      </div>
+      <div style="display:flex;gap:22px;flex-wrap:wrap;margin-bottom:16px;color:var(--ink);font-weight:600">
+        <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="shQ" checked style="width:18px;height:18px"> Shuffle question order</label>
+        <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="shO" checked style="width:18px;height:18px"> Shuffle answer positions</label>
+      </div>
+      <div style="color:var(--muted);font-weight:600;margin-bottom:14px" id="avail"></div>
+      <button class="btn primary big" id="createBtn">Create game</button>
+      <div class="err hidden" id="setupErr"></div>
+    </div>
+  </section>
+
+  <!-- ============ LOBBY ============ -->
+  <section id="s-lobby" class="lobby hidden">
+    <div class="joinbox">
+      <div style="font-weight:800;color:var(--muted)">Join at</div>
+      <div class="url" id="joinUrl"></div>
+      <div style="font-weight:800;color:var(--muted);margin-top:10px">Game code</div>
+      <div class="pin" id="pinBig"></div>
+      <img id="qr" alt="QR code to join">
+    </div>
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap">
+        <h2 id="playerCount">0 players</h2>
+        <div style="display:flex;gap:10px">
+          <button class="btn ghost small" id="lockBtn">🔓 Lock joining</button>
+          <button class="btn primary big" id="startBtn">Start</button>
+        </div>
+      </div>
+      <div class="chips" id="chips"></div>
+      <div style="opacity:.7;margin-top:16px">Click a nickname to remove that player.</div>
+      <div class="err hidden" id="lobbyErr"></div>
+    </div>
+  </section>
+
+  <!-- ============ QUESTION ============ -->
+  <section id="s-q" class="hidden" style="display:flex;flex-direction:column;flex:1">
+    <div class="h-meta">
+      <div id="qLabel"></div>
+      <div class="counter" id="qAnswered"></div>
+      <div class="bigtimer" id="qClock"></div>
+    </div>
+    <div class="timer" id="qTimer"><i></i></div>
+    <div class="h-q" id="qText"></div>
+    <div class="tiles h-tiles" id="qTiles"></div>
+    <div class="foot"><span style="opacity:.7">Answers appear on phones</span><button class="btn accent" id="skipBtn">Skip to answer ⏭</button></div>
+  </section>
+
+  <!-- ============ REVEAL ============ -->
+  <section id="s-reveal" class="hidden" style="display:flex;flex-direction:column;flex:1">
+    <div class="h-meta"><div id="rLabel"></div><div class="counter" id="rAnswered"></div></div>
+    <div class="h-q" id="rText" style="font-size:clamp(1.3rem,2.4vw,2rem);padding:16px 22px"></div>
+    <div class="reveal-grid">
+      <div>
+        <div class="bars" id="bars"></div>
+        <div class="explain" id="rExplain" style="font-size:1.25rem"></div>
+      </div>
+      <div class="board"><h3>Leaderboard</h3><div id="top5"></div></div>
+    </div>
+    <div class="foot"><span style="opacity:.7">Press Space or Enter for next</span><button class="btn primary big" id="nextBtn">Next</button></div>
+  </section>
+
+  <!-- ============ FINAL ============ -->
+  <section id="s-final" class="hidden" style="flex:1">
+    <h1 class="center" style="font-size:2.4rem;margin-bottom:4px" id="finTitle">Final results</h1>
+    <div class="podium" id="podium"></div>
+    <div class="scroll"><table class="res" id="resTable"></table></div>
+    <div class="foot" style="justify-content:center;gap:14px">
+      <button class="btn accent" id="csvBtn">⬇ Download results (CSV)</button>
+      <button class="btn ghost" id="againBtn">New game</button>
+    </div>
+  </section>
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const SHAPES = [
+    '<svg viewBox="0 0 32 32"><path d="M16 3 30 28H2z"/></svg>',
+    '<svg viewBox="0 0 32 32"><path d="M16 2 30 16 16 30 2 16z"/></svg>',
+    '<svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="13"/></svg>',
+    '<svg viewBox="0 0 32 32"><rect x="4" y="4" width="24" height="24" rx="2"/></svg>'
+  ];
+  const COLORS = ['var(--red)', 'var(--blue)', 'var(--yellow)', 'var(--green)'];
+  const sections = ['s-setup','s-lobby','s-q','s-reveal','s-final'];
+  let view = 'setup';
+  function show(id){ view = id; sections.forEach(s => $(s).classList.toggle('hidden', s !== 's-' + id)); }
+
+  let ws, pin = '', hostToken = '', config = { banks: [], hostKeyRequired: false }, bank = null;
+  let players = [], locked = false, raf = 0, qEnd = 0, qTotalMs = 1, finalData = null, bankModules = {}, retry = 0, closing = false;
+  let state = 'setup';
+
+  // ---------- config / setup ----------
+  fetch('/api/config').then(r => r.json()).then(c => {
+    config = c;
+    $('keyField').classList.toggle('hidden', !c.hostKeyRequired);
+    const sel = $('bank'); sel.innerHTML = '';
+    c.banks.forEach(b => { const o = document.createElement('option'); o.value = b.id; o.textContent = b.title + ' (' + b.total + ' questions)'; sel.appendChild(o); });
+    sel.onchange = () => renderMods();
+    renderMods();
+    try { const k = sessionStorage.getItem('apesKey'); if (k) $('key').value = k; } catch {}
+    // resume if refreshed during a game
+    try {
+      const saved = JSON.parse(sessionStorage.getItem('apesHost') || 'null');
+      if (saved && saved.pin) { pin = saved.pin; hostToken = saved.hostToken; connect(() => send({ t:'host:resume', pin, hostToken })); }
+    } catch {}
+  });
+
+  function renderMods(){
+    bank = config.banks.find(b => b.id === $('bank').value) || config.banks[0];
+    if (!bank) return;
+    bankModules = bank.modules || {};
+    const box = $('mods'); box.innerHTML = '';
+    Object.keys(bank.counts).sort((a, b) => +a - +b).forEach(k => {
+      const l = document.createElement('label');
+      const cb = document.createElement('input'); cb.type = 'checkbox'; cb.value = k; cb.checked = true; cb.onchange = updateAvail;
+      const d = document.createElement('div');
+      d.innerHTML = '<span></span><small></small>';
+      d.firstChild.textContent = 'Module ' + k;
+      d.lastChild.textContent = (bank.modules[k] || '') + ' · ' + bank.counts[k] + ' q';
+      l.appendChild(cb); l.appendChild(d); box.appendChild(l);
+    });
+    updateAvail();
+  }
+  function chosenMods(){ return [...$('mods').querySelectorAll('input:checked')].map(i => i.value); }
+  function updateAvail(){
+    const n = chosenMods().reduce((s, k) => s + (bank.counts[k] || 0), 0);
+    $('avail').textContent = n + ' questions available in the selected modules.';
+    $('createBtn').disabled = n === 0;
+  }
+  $('modAll').onclick = () => { $('mods').querySelectorAll('input').forEach(i => i.checked = true); updateAvail(); };
+  $('modNone').onclick = () => { $('mods').querySelectorAll('input').forEach(i => i.checked = false); updateAvail(); };
+
+  // ---------- websocket ----------
+  function connect(onOpen){
+    ws = new WebSocket((location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host);
+    ws.onopen = () => { retry = 0; onOpen && onOpen(); };
+    ws.onmessage = e => { let m; try { m = JSON.parse(e.data); } catch { return; } onMsg(m); };
+    ws.onclose = () => {
+      if (closing || !pin) return;
+      retry++; setTimeout(() => connect(() => send({ t:'host:resume', pin, hostToken })), Math.min(4000, 500 * retry));
+    };
+  }
+  function send(o){ if (ws && ws.readyState === 1) ws.send(JSON.stringify(o)); }
+
+  $('createBtn').onclick = () => {
+    $('setupErr').classList.add('hidden');
+    const key = $('key').value;
+    try { sessionStorage.setItem('apesKey', key); } catch {}
+    const msg = { t:'host:create', key, bank: bank.id, modules: chosenMods(), count: $('count').value, timeLimit: $('time').value, shuffleQ: $('shQ').checked, shuffleOpts: $('shO').checked };
+    const go = () => send(msg);
+    if (ws && ws.readyState === 1) go(); else connect(go);
+  };
+
+  function onMsg(m){
+    switch (m.t) {
+      case 'error':
+        if (m.code === 'resume') { try { sessionStorage.removeItem('apesHost'); } catch {} pin = ''; hostToken = ''; show('setup'); $('topInfo').textContent = ''; return; }
+        if (view === 'setup') { const e = $('setupErr'); e.textContent = m.msg; e.classList.remove('hidden'); }
+        else if (view === 'lobby') { const e = $('lobbyErr'); e.textContent = m.msg; e.classList.remove('hidden'); setTimeout(() => e.classList.add('hidden'), 3500); }
+        return;
+      case 'host:created':
+        pin = m.pin; hostToken = m.hostToken;
+        try { sessionStorage.setItem('apesHost', JSON.stringify({ pin, hostToken })); } catch {}
+        $('topInfo').textContent = m.title + ' · ' + m.total + ' questions';
+        if (!m.resumed) enterLobby();
+        return;
+      case 'lobby': players = m.players; locked = m.locked; if (view !== 'lobby' && (state === 'setup' || state === 'lobby')) enterLobby(); if (view === 'lobby') renderLobby(); return;
+      case 'question': return showQuestion(m);
+      case 'answered': $('qAnswered').textContent = m.answered + ' / ' + m.players + ' answered'; return;
+      case 'reveal': return showReveal(m);
+      case 'final': return showFinal(m);
+    }
+  }
+
+  // ---------- lobby ----------
+  function enterLobby(){
+    state = 'lobby'; show('lobby');
+    $('pinBig').textContent = pin;
+    const url = location.origin;
+    $('joinUrl').textContent = url.replace(/^https?:\/\//, '');
+    $('qr').src = '/qr.svg?text=' + encodeURIComponent(url + '/?pin=' + pin);
+    renderLobby();
+  }
+  function renderLobby(){
+    $('playerCount').textContent = players.length + (players.length === 1 ? ' player' : ' players');
+    const box = $('chips'); box.innerHTML = '';
+    players.forEach(p => {
+      const c = document.createElement('div'); c.className = 'chip' + (p.connected ? '' : ' off'); c.textContent = p.name;
+      c.title = 'Click to remove';
+      c.onclick = () => { if (confirm('Remove ' + p.name + ' from the game?')) send({ t:'host:kick', id: p.id }); };
+      box.appendChild(c);
+    });
+    $('lockBtn').textContent = locked ? '🔒 Joining locked' : '🔓 Lock joining';
+    $('startBtn').disabled = players.length === 0;
+  }
+  $('lockBtn').onclick = () => send({ t:'host:lock', locked: !locked });
+  $('startBtn').onclick = () => send({ t:'host:start' });
+
+  // ---------- question ----------
+  function label(m){ return 'Question ' + (m.index + 1) + ' of ' + m.total + (m.module && bankModules[m.module] ? ' · Module ' + m.module : ''); }
+  function showQuestion(m){
+    state = 'question'; show('q');
+    $('qLabel').textContent = label(m);
+    $('qAnswered').textContent = m.answered + ' / ' + m.players + ' answered';
+    $('qText').textContent = m.q;
+    tiles($('qTiles'), m.options, null);
+    qTotalMs = m.timeLimit * 1000; qEnd = performance.now() + m.remainingMs;
+    cancelAnimationFrame(raf);
+    const bar = $('qTimer'), fill = bar.firstElementChild;
+    (function loop(){
+      const left = Math.max(0, qEnd - performance.now());
+      fill.style.transform = 'scaleX(' + (left / qTotalMs) + ')';
+      bar.classList.toggle('low', left < 5000);
+      $('qClock').textContent = Math.ceil(left / 1000);
+      if (left > 0) raf = requestAnimationFrame(loop);
+    })();
+  }
+  function tiles(el, options, correct){
+    el.innerHTML = ''; el.classList.toggle('two', options.length === 2);
+    options.forEach((o, i) => {
+      const d = document.createElement('div'); d.className = 'tile t' + i;
+      d.innerHTML = SHAPES[i]; const s = document.createElement('span'); s.className = 'txt'; s.textContent = o; d.appendChild(s);
+      el.appendChild(d);
+    });
+  }
+  $('skipBtn').onclick = () => send({ t:'host:skip' });
+
+  // ---------- reveal ----------
+  let lastQuestionText = '', lastOptions = [];
+  function showReveal(m){
+    state = 'reveal'; cancelAnimationFrame(raf); show('reveal');
+    $('rLabel').textContent = label(m);
+    $('rAnswered').textContent = m.answered + ' / ' + m.players + ' answered';
+    $('rText').textContent = m.q;
+    const opts = m.options;
+    const max = Math.max(1, ...m.counts);
+    const bars = $('bars'); bars.innerHTML = '';
+    m.counts.forEach((n, i) => {
+      const b = document.createElement('div'); b.className = 'bar' + (i === m.correct ? '' : ' dim');
+      const num = document.createElement('div'); num.className = 'n'; num.textContent = n + (i === m.correct ? ' ✓' : '');
+      const col = document.createElement('div'); col.className = 'col'; col.style.background = COLORS[i]; col.style.height = '0px';
+      const lbl = document.createElement('div'); lbl.className = 'lbl'; lbl.textContent = opts[i] || '';
+      b.appendChild(num); b.appendChild(col); b.appendChild(lbl); bars.appendChild(b);
+      requestAnimationFrame(() => requestAnimationFrame(() => { col.style.height = Math.max(8, Math.round((n / max) * 160)) + 'px'; }));
+    });
+    const ex = $('rExplain'); ex.textContent = m.explain || ''; ex.classList.toggle('hidden', !m.explain);
+    const t = $('top5'); t.innerHTML = '';
+    m.top.forEach((p, i) => {
+      const r = document.createElement('div'); r.className = 'row';
+      const a = document.createElement('span'); a.textContent = (i + 1) + '. ' + p.name;
+      const b = document.createElement('b'); b.textContent = p.score;
+      r.appendChild(a); r.appendChild(b); t.appendChild(r);
+    });
+    $('nextBtn').textContent = m.last ? 'Final results 🏆' : 'Next question ▶';
+  }
+  $('nextBtn').onclick = () => send({ t:'host:next' });
+
+  // ---------- final ----------
+  function showFinal(m){
+    state = 'final'; cancelAnimationFrame(raf); finalData = m; show('final');
+    $('finTitle').textContent = m.title + ': final results';
+    const pod = $('podium'); pod.innerHTML = '';
+    const order = [1, 0, 2]; // 2nd, 1st, 3rd
+    order.forEach(i => {
+      const p = m.podium[i]; if (!p) return;
+      const d = document.createElement('div'); d.className = 'pod p' + (i + 1);
+      d.innerHTML = '<div class="name"></div><div class="sc"></div><div class="blk"></div>';
+      d.children[0].textContent = p.name; d.children[1].textContent = p.score + ' pts'; d.children[2].textContent = i + 1;
+      pod.appendChild(d);
+    });
+    const tb = $('resTable'); tb.innerHTML = '<tr><th>#</th><th>Name</th><th>Score</th><th>Correct</th></tr>';
+    m.results.forEach(r => {
+      const tr = document.createElement('tr');
+      [r.rank, r.name, r.score, r.correct + ' / ' + m.questions.length].forEach(v => { const td = document.createElement('td'); td.textContent = v; tr.appendChild(td); });
+      tb.appendChild(tr);
+    });
+  }
+  function csvCell(v){ v = String(v == null ? '' : v); if (/^[=+\-@]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+  $('csvBtn').onclick = () => {
+    if (!finalData) return;
+    const n = finalData.questions.length;
+    const rows = [['Rank', 'Name', 'Score', 'Correct', ...Array.from({ length: n }, (_, i) => 'Q' + (i + 1))]];
+    finalData.results.forEach(r => rows.push([r.rank, r.name, r.score, r.correct, ...Array.from({ length: n }, (_, i) => r.history[i] === true ? 1 : (r.history[i] === false ? 0 : ''))]));
+    rows.push([]); rows.push(['Question key']);
+    finalData.questions.forEach((q, i) => rows.push(['Q' + (i + 1), q.module ? 'Module ' + q.module : '', q.q]));
+    const csv = rows.map(r => r.map(csvCell).join(',')).join('\r\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+    a.download = 'quiz-results-' + new Date().toISOString().slice(0, 10) + '.csv';
+    document.body.appendChild(a); a.click(); a.remove();
+  };
+  $('againBtn').onclick = () => {
+    if (!confirm('Close this game and set up a new one?')) return;
+    send({ t:'host:close' }); closing = true; try { sessionStorage.removeItem('apesHost'); } catch {}
+    setTimeout(() => location.reload(), 150);
+  };
+
+  // keyboard: Space / Enter = next
+  document.addEventListener('keydown', e => {
+    if (e.target && /INPUT|SELECT|TEXTAREA/.test(e.target.tagName)) return;
+    if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
+      if (state === 'reveal') send({ t:'host:next' });
+      else if (state === 'lobby' && players.length) send({ t:'host:start' });
+      else if (state === 'question') send({ t:'host:skip' });
+    }
+  });
+})();
+</script>
+</body>
+</html>

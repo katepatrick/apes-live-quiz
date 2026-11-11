@@ -1,0 +1,20 @@
+{
+  "name": "apes-live-quiz",
+  "version": "1.0.0",
+  "description": "Kahoot-style live classroom quiz game (host screen + phone clients)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "qrcode": "^1.5.4",
+    "ws": "^8.22.2"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "private": true
+}
